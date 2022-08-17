@@ -83,15 +83,15 @@ plusminusBtn.addEventListener('click', () =>
 })
 moduloBtn.addEventListener('click', () => 
 {
-    display.textContent = '%';
+    changeDisplayOperator('%');
 })
 divideBtn.addEventListener('click', () => 
 {
-    display.textContent = '/';
+    changeDisplayOperator('/');
 })
 multiplyBtn.addEventListener('click', () => 
 {
-    display.textContent = '*';
+    changeDisplayOperator('*');
 })
 minusBtn.addEventListener('click', () => 
 {
@@ -128,12 +128,12 @@ function changeDisplayOperator(op)
 {
     if (!operator)
     {
-        display.textContent = op;
         operator = op;
     } else if (operator)
     {
         displayValue = operate(operator, firstValue, secondValue);
         firstValue = displayValue;
+        operator = op;
         display.textContent = displayValue;
     }
 }
