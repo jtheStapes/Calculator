@@ -96,7 +96,6 @@ multiplyBtn.addEventListener('click', () =>
 minusBtn.addEventListener('click', () => 
 {
     changeDisplayOperator('-');
-    //display.textContent = '-';
 })
 addBtn.addEventListener('click', () => 
 {
@@ -104,7 +103,8 @@ addBtn.addEventListener('click', () =>
 })
 equalBtn.addEventListener('click', () => 
 {
-    display.textContent = '=';
+    displayValue = operate(operator, firstValue, secondValue);
+    display.textContent = displayValue;
 })
 
 console.log(buttons);
