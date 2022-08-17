@@ -1,4 +1,8 @@
 let buttons = Array.from(document.querySelectorAll('button'));
+let firstValue; //Placeholder for first input value
+let secondValue; //Placeholder for second input value
+let operator = ''; //Placeholder for operator
+let displayValue = 0; //The actual value currently held in the display window
 const display = document.querySelector('.display');
 const clearBtn = buttons[0];
 const plusminusBtn = buttons[1];
@@ -19,56 +23,122 @@ const addBtn = buttons[15];
 const zeroBtn = buttons[16];
 const decimalBtn = buttons[17];
 const equalBtn = buttons[18];
+display.textContent = 0;
 
 clearBtn.addEventListener('click', () => 
 {
+    firstValue = '';
+    secondValue = '';
+    operator = '';
     display.textContent = '0';
 })
 oneBtn.addEventListener('click', () => 
 {
-    display.textContent = '1';
+    changeDisplayNum(1);
 })
 twoBtn.addEventListener('click', () => 
 {
-    display.textContent = '2';
+    changeDisplayNum(2);
 })
 threeBtn.addEventListener('click', () => 
 {
-    display.textContent = '3';
+    changeDisplayNum(3);
 })
 fourBtn.addEventListener('click', () => 
 {
-    display.textContent = '4';
+    changeDisplayNum(4);
 })
 fiveBtn.addEventListener('click', () => 
 {
-    display.textContent = '5';
+    changeDisplayNum(5);
 })
 sixBtn.addEventListener('click', () => 
 {
-    display.textContent = '6';
+    changeDisplayNum(6);
 })
 sevenBtn.addEventListener('click', () => 
 {
-    display.textContent = '7';
+    changeDisplayNumNum(7);
 })
 eightBtn.addEventListener('click', () => 
 {
-    display.textContent = '8';
+    changeDisplayNum(8);
 })
 nineBtn.addEventListener('click', () => 
 {
-    display.textContent = '9';
+    changeDisplayNum(9);
 })
 zeroBtn.addEventListener('click', () => 
 {
-    display.textContent = '0';
+    changeDisplayNum(0);
 })
 decimalBtn.addEventListener('click', () => 
 {
     display.textContent = '.';
 })
+plusminusBtn.addEventListener('click', () => 
+{
+    
+    
+})
+moduloBtn.addEventListener('click', () => 
+{
+    display.textContent = '%';
+})
+divideBtn.addEventListener('click', () => 
+{
+    display.textContent = '/';
+})
+multiplyBtn.addEventListener('click', () => 
+{
+    display.textContent = '*';
+})
+minusBtn.addEventListener('click', () => 
+{
+    changeDisplayOperator('-');
+    //display.textContent = '-';
+})
+addBtn.addEventListener('click', () => 
+{
+    changeDisplayOperator('+');
+})
+equalBtn.addEventListener('click', () => 
+{
+    display.textContent = '=';
+})
+
 console.log(buttons);
+function changeDisplayNum(num)
+{
+    display.textContent = num;
+    if (!firstValue)
+    {
+        firstValue = num;
+    } else if (firstValue && !secondValue)
+    {
+        secondValue = num;
+    } else if (firstValue && secondValue)
+    {
+        secondValue = num;
+    }
+}
+
+
+function changeDisplayOperator(op) 
+{
+    if (!operator)
+    {
+        display.textContent = op;
+        operator = op;
+    } else if (operator)
+    {
+        displayValue = operate(operator, firstValue, secondValue);
+        firstValue = displayValue;
+        display.textContent = displayValue;
+    }
+}
+
+
 function add(a, b) 
 {
     return a+b;
@@ -89,17 +159,29 @@ function divide(a, b)
     return a/b;
 }
 
+function modulo(a, b)
+{
+    return a%b;
+}
+
 function operate(operator, a, b)
 {
     switch(operator)
     {
-        case '-': return a-b; break;
-        case '+': return a+b; break;
-        case '*': return a*b; break;
-        case '/': return a/b;
+        // case '-': return a-b; break;
+        // case '+': return a+b; break;
+        // case '*': return a*b; break;
+        // case '%': return a%b; break;
+        // case '/': return a/b;
+
+        case '-': return subtract(a,b); break;
+        case '+': return add(a, b); break;
+        case '*': return multiply(a, b); break;
+        case '%': return modulo(a, b); break;
+        case '/': return divide(a, b);
     }
 }
-console.log(add(2,2))
+console.log(add(2.64,2.12))
 console.log(subtract(2,2))
 console.log(multiply(2,2))
 console.log(divide(2,2))
