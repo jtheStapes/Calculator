@@ -1,6 +1,6 @@
 let buttons = Array.from(document.querySelectorAll('button'));
-let firstValue; //Placeholder for first input value
-let secondValue; //Placeholder for second input value
+let firstValue = ''; //Placeholder for first input value
+let secondValue = ''; //Placeholder for second input value
 let operator = ''; //Placeholder for operator
 let displayValue = 0; //The actual value currently held in the display window
 const display = document.querySelector('.display');
@@ -35,16 +35,16 @@ clearBtn.addEventListener('click', () =>
 oneBtn.addEventListener('click', () => 
 {
     changeDisplayNum(1);
-    console.log(firstValue);
-    console.log(secondValue);
-    console.log(displayValue);
+    // console.log(firstValue);
+    // console.log(secondValue);
+    // console.log(displayValue);
 })
 twoBtn.addEventListener('click', () => 
 {
     changeDisplayNum(2);
-    console.log(firstValue);
-    console.log(secondValue);
-    console.log(displayValue);
+    // console.log(firstValue);
+    // console.log(secondValue);
+    // console.log(displayValue);
 })
 threeBtn.addEventListener('click', () => 
 {
@@ -84,9 +84,9 @@ decimalBtn.addEventListener('click', () =>
 })
 plusminusBtn.addEventListener('click', () => 
 {
-    console.log(firstValue);
-    console.log(secondValue);
-    console.log(displayValue);
+    // console.log(firstValue);
+    // console.log(secondValue);
+    // console.log(displayValue);
     if (displayValue === firstValue) 
     {
         displayValue = displayValue*(-1);
@@ -96,28 +96,8 @@ plusminusBtn.addEventListener('click', () =>
         displayValue = displayValue*(-1);
         secondValue = displayValue;
     }
-    // displayValue = displayValue*(-1);
-    // firstValue = displayValue;
     display.textContent = displayValue;
-    console.log(firstValue);
-    console.log(secondValue);
-    console.log(displayValue);
-    // if (!displayValue && !secondValue)
-    // {
-    //     firstValue = firstValue*(-1);
-    //     displayValue = firstValue;
-    //     display.textContent = displayValue;
-    // } else if (!displayValue)
-    // {
-    //     secondValue = secondValue*(-1);
-    //     displayValue = secondValue;
-    //     display.textContent = displayValue;
-    // } else 
-    // {
-    //     displayValue = displayValue*(-1);
-    //     firstValue = displayValue;
-    //     display.textContent = displayValue;
-    // }
+    
 })
 moduloBtn.addEventListener('click', () => 
 {
@@ -141,32 +121,41 @@ addBtn.addEventListener('click', () =>
 })
 equalBtn.addEventListener('click', () => 
 {
-    console.log(firstValue);
-    console.log(secondValue);
-    console.log(displayValue);
+    // console.log(firstValue);
+    // console.log(secondValue);
+    // console.log(displayValue);
 
-    displayValue = operate(operator, firstValue, secondValue);
+    displayValue = operate(operator, parseInt(firstValue), parseInt(secondValue));
     firstValue = displayValue;
+    secondValue = '';
     operator = '';
     display.textContent = displayValue;
 })
 
 function changeDisplayNum(num)
 {
-    
-    if (!firstValue)
+    if (!operator) 
     {
-        firstValue = num;
+        firstValue += `${num}`;
         displayValue = firstValue;
-    } else if (firstValue && !secondValue)
+    } else if (operator)
     {
-        secondValue = num;
+        secondValue += `${num}`;
         displayValue = secondValue;
-    } else if (firstValue && secondValue)
-    {
-        secondValue = num;
-        displayValue = secondValue;
-    }
+    } 
+    // if (!firstValue)
+    // {
+    //     firstValue = num;
+    //     displayValue = firstValue;
+    // } else if (firstValue && !secondValue)
+    // {
+    //     secondValue = num;
+    //     displayValue = secondValue;
+    // } else if (firstValue && secondValue)
+    // {
+    //     secondValue = num;
+    //     displayValue = secondValue;
+    // }
     display.textContent = displayValue;
 }
 
@@ -179,8 +168,9 @@ function changeDisplayOperator(op)
         //display.textContent = displayValue;
     } else if (operator)
     {
-        displayValue = operate(operator, firstValue, secondValue);
-        firstValue = displayValue;
+        displayValue = operate(operator, parseInt(firstValue), parseInt(secondValue));
+        firstValue = displayValue.toString();
+        secondValue = '';
         operator = op;
         display.textContent = displayValue;
     }
