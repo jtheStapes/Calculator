@@ -35,10 +35,16 @@ clearBtn.addEventListener('click', () =>
 oneBtn.addEventListener('click', () => 
 {
     changeDisplayNum(1);
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(displayValue);
 })
 twoBtn.addEventListener('click', () => 
 {
     changeDisplayNum(2);
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(displayValue);
 })
 threeBtn.addEventListener('click', () => 
 {
@@ -58,7 +64,7 @@ sixBtn.addEventListener('click', () =>
 })
 sevenBtn.addEventListener('click', () => 
 {
-    changeDisplayNumNum(7);
+    changeDisplayNum(7);
 })
 eightBtn.addEventListener('click', () => 
 {
@@ -78,22 +84,40 @@ decimalBtn.addEventListener('click', () =>
 })
 plusminusBtn.addEventListener('click', () => 
 {
-    if (!displayValue && !secondValue)
-    {
-        firstValue = firstValue*(-1);
-        displayValue = firstValue;
-        display.textContent = displayValue;
-    } else if (!displayValue)
-    {
-        secondValue = secondValue*(-1);
-        displayValue = secondValue;
-        display.textContent = displayValue;
-    } else 
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(displayValue);
+    if (displayValue === firstValue) 
     {
         displayValue = displayValue*(-1);
         firstValue = displayValue;
-        display.textContent = displayValue;
+    } else if (displayValue === secondValue) 
+    {
+        displayValue = displayValue*(-1);
+        secondValue = displayValue;
     }
+    // displayValue = displayValue*(-1);
+    // firstValue = displayValue;
+    display.textContent = displayValue;
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(displayValue);
+    // if (!displayValue && !secondValue)
+    // {
+    //     firstValue = firstValue*(-1);
+    //     displayValue = firstValue;
+    //     display.textContent = displayValue;
+    // } else if (!displayValue)
+    // {
+    //     secondValue = secondValue*(-1);
+    //     displayValue = secondValue;
+    //     display.textContent = displayValue;
+    // } else 
+    // {
+    //     displayValue = displayValue*(-1);
+    //     firstValue = displayValue;
+    //     display.textContent = displayValue;
+    // }
 })
 moduloBtn.addEventListener('click', () => 
 {
@@ -117,6 +141,10 @@ addBtn.addEventListener('click', () =>
 })
 equalBtn.addEventListener('click', () => 
 {
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(displayValue);
+
     displayValue = operate(operator, firstValue, secondValue);
     firstValue = displayValue;
     operator = '';
@@ -154,7 +182,7 @@ function changeDisplayOperator(op)
         displayValue = operate(operator, firstValue, secondValue);
         firstValue = displayValue;
         operator = op;
-        //display.textContent = displayValue;
+        display.textContent = displayValue;
     }
     
 }
