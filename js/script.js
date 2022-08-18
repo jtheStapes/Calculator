@@ -33,7 +33,8 @@ clearBtn.addEventListener('click', () =>
     firstValue = '';
     secondValue = '';
     operator = '';
-    display.textContent = '0';
+    displayValue = 0
+    display.textContent = displayValue;
 })
 oneBtn.addEventListener('click', () => 
 {
@@ -153,30 +154,46 @@ equalBtn.addEventListener('click', () =>
 
 function changeDisplayNum(num) //Displays number to display window
 {
+    // && secondValue.length < 10){
     if (!operator) 
     {
-        firstValue += num;
-        displayValue = firstValue;
-    
+        if (firstValue.length < 10)
+        {
+            if (num === '.' && firstValue.includes(num)) //Can't have two decimals in one number
+            {
+                return;
+            }
+            firstValue += num;
+            displayValue = firstValue;
+        }
     } else if (operator)
     {
-        secondValue += num;
-        displayValue = secondValue;
+        if (secondValue.length < 10) 
+        {
+            if (num === '.' && secondValue.includes(num)) //Can't have two decimals in one number
+            {
+                return;
+            }
+            secondValue += num;
+            displayValue = secondValue;
+        }
     } 
     display.textContent = displayValue;
+    //}
 }
 
 
 function changeDisplayOperator(op) //Changes operator based on user input
 {
-    if (!operator)
+    if (!operator) //Sets the initial operator
     {
         operator = op;
-    } else if (operator && !secondValue)
+    } else if (operator && !secondValue) //Can change operator
     {
         operator = op;
     } else if (operator)
     {
+        //Convert first and second values from strings to numbers
         if (firstValue.includes('.')) { firstValue = parseFloat(firstValue) }
         else if (secondValue.includes('.')) { secondValue = parseFloat(secondValue) }
         else { firstValue = parseInt(firstValue); secondValue = parseInt(secondValue); }
@@ -194,7 +211,13 @@ function changeDisplayOperator(op) //Changes operator based on user input
 function add(a, b) { return a+b; }
 function subtract(a, b) { return a-b; }
 function multiply(a, b) { return a*b; }
-function divide(a, b) { return a/b; }
+function divide(a, b) {
+    if (b === 0) 
+    {
+        return 'LOL, NOPE!';
+    }
+    return a/b; 
+}
 function modulo(a, b) { return a%b; }
 
 function operate(operator, a, b) //Calculates based on operator and operands
@@ -208,7 +231,3 @@ function operate(operator, a, b) //Calculates based on operator and operands
         case '/': return divide(a, b);
     }
 }
-
-let example = '1234567876543';
-console.log(example);
-console.log(example.substring(-1, 11));
