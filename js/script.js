@@ -139,22 +139,31 @@ equalBtn.addEventListener('click', () =>
     }
     else 
     {
-    displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString();
+    displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString(); //Performs the operation input into the calculator
+    //The if...else statement below allows for large operands and converts them to exponential form. 
     if (displayValue.length > 10)
-    {
-        displayValue = displayValue.substring(-1, 10);
-        displayValue = parseFloat(displayValue);
+    { 
+        displayValue = (parseFloat(displayValue).toExponential()).toString(); //Converts displayValue to exponential form
+        let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
+        displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+        firstValue = tempDisplay;
+        secondValue = '';
+        operator = '';
+        display.textContent = displayValue;
+    } else {
+        firstValue = displayValue;
+        secondValue = '';
+        operator = '';
+        display.textContent = displayValue;
     }
-    firstValue = displayValue.toString();
-    secondValue = '';
-    operator = '';
-    display.textContent = displayValue;
     }
+    // console.log(firstValue);
+    // console.log(secondValue);
+    // console.log(displayValue);
 })
 
 function changeDisplayNum(num) //Displays number to display window
 {
-    // && secondValue.length < 10){
     if (!operator) 
     {
         if (firstValue.length < 10)
@@ -179,7 +188,7 @@ function changeDisplayNum(num) //Displays number to display window
         }
     } 
     display.textContent = displayValue;
-    //}
+    
 }
 
 
@@ -212,7 +221,7 @@ function add(a, b) { return a+b; }
 function subtract(a, b) { return a-b; }
 function multiply(a, b) { return a*b; }
 function divide(a, b) {
-    if (b === 0) 
+    if (b === 0) //Prevents dividing by zero
     {
         return 'LOL, NOPE!';
     }
@@ -231,3 +240,6 @@ function operate(operator, a, b) //Calculates based on operator and operands
         case '/': return divide(a, b);
     }
 }
+
+let example = 23;
+console.log(example.length);
