@@ -81,14 +81,17 @@ plusminusBtn.addEventListener('click', () =>
     if (!displayValue && !secondValue)
     {
         firstValue = firstValue*(-1);
-        display.textContent = firstValue;
+        displayValue = firstValue;
+        display.textContent = displayValue;
     } else if (!displayValue)
     {
         secondValue = secondValue*(-1);
-        display.textContent = secondValue;
+        displayValue = secondValue;
+        display.textContent = displayValue;
     } else 
     {
         displayValue = displayValue*(-1);
+        firstValue = displayValue;
         display.textContent = displayValue;
     }
 })
@@ -115,25 +118,28 @@ addBtn.addEventListener('click', () =>
 equalBtn.addEventListener('click', () => 
 {
     displayValue = operate(operator, firstValue, secondValue);
+    firstValue = displayValue;
+    operator = '';
     display.textContent = displayValue;
 })
 
-console.log(buttons);
 function changeDisplayNum(num)
 {
-    display.textContent = num;
+    
     if (!firstValue)
     {
         firstValue = num;
-        //displayValue = firstValue;
+        displayValue = firstValue;
     } else if (firstValue && !secondValue)
     {
         secondValue = num;
-        //displayValue = secondValue;
+        displayValue = secondValue;
     } else if (firstValue && secondValue)
     {
         secondValue = num;
+        displayValue = secondValue;
     }
+    display.textContent = displayValue;
 }
 
 
@@ -142,14 +148,15 @@ function changeDisplayOperator(op)
     if (!operator)
     {
         operator = op;
+        //display.textContent = displayValue;
     } else if (operator)
     {
         displayValue = operate(operator, firstValue, secondValue);
         firstValue = displayValue;
         operator = op;
-        
+        //display.textContent = displayValue;
     }
-    display.textContent = displayValue;
+    
 }
 
 
@@ -195,8 +202,8 @@ function operate(operator, a, b)
         case '/': return divide(a, b);
     }
 }
-console.log(add(2.64,2.12))
-console.log(subtract(2,2))
-console.log(multiply(2,2))
-console.log(divide(2,2))
-console.log(operate('+', 2, 6));
+// console.log(add(2.64,2.12))
+// console.log(subtract(2,2))
+// console.log(multiply(2,2))
+// console.log(divide(2,2))
+// console.log(operate('+', 2, 6));
