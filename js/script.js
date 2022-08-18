@@ -78,8 +78,19 @@ decimalBtn.addEventListener('click', () =>
 })
 plusminusBtn.addEventListener('click', () => 
 {
-    
-    
+    if (!displayValue && !secondValue)
+    {
+        firstValue = firstValue*(-1);
+        display.textContent = firstValue;
+    } else if (!displayValue)
+    {
+        secondValue = secondValue*(-1);
+        display.textContent = secondValue;
+    } else 
+    {
+        displayValue = displayValue*(-1);
+        display.textContent = displayValue;
+    }
 })
 moduloBtn.addEventListener('click', () => 
 {
@@ -114,9 +125,11 @@ function changeDisplayNum(num)
     if (!firstValue)
     {
         firstValue = num;
+        //displayValue = firstValue;
     } else if (firstValue && !secondValue)
     {
         secondValue = num;
+        //displayValue = secondValue;
     } else if (firstValue && secondValue)
     {
         secondValue = num;
@@ -134,8 +147,9 @@ function changeDisplayOperator(op)
         displayValue = operate(operator, firstValue, secondValue);
         firstValue = displayValue;
         operator = op;
-        display.textContent = displayValue;
+        
     }
+    display.textContent = displayValue;
 }
 
 
