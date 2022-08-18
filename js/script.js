@@ -157,6 +157,7 @@ function changeDisplayNum(num) //Displays number to display window
     {
         firstValue += num;
         displayValue = firstValue;
+    
     } else if (operator)
     {
         secondValue += num;
@@ -169,6 +170,9 @@ function changeDisplayNum(num) //Displays number to display window
 function changeDisplayOperator(op) //Changes operator based on user input
 {
     if (!operator)
+    {
+        operator = op;
+    } else if (operator && !secondValue)
     {
         operator = op;
     } else if (operator)
