@@ -1,3 +1,4 @@
+//Vairables and constants
 let buttons = Array.from(document.querySelectorAll('button'));
 let firstValue = ''; //Placeholder for first input value
 let secondValue = ''; //Placeholder for second input value
@@ -25,6 +26,8 @@ const decimalBtn = buttons[17];
 const equalBtn = buttons[18];
 display.textContent = 0;
 
+
+//Calculator buttons
 clearBtn.addEventListener('click', () => 
 {
     firstValue = '';
@@ -34,53 +37,53 @@ clearBtn.addEventListener('click', () =>
 })
 oneBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(1);
-    // console.log(firstValue);
-    // console.log(secondValue);
-    // console.log(displayValue);
+    changeDisplayNum('1');
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(displayValue);
 })
 twoBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(2);
-    // console.log(firstValue);
-    // console.log(secondValue);
-    // console.log(displayValue);
+    changeDisplayNum('2');
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(displayValue);
 })
 threeBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(3);
+    changeDisplayNum('3');
 })
 fourBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(4);
+    changeDisplayNum('4');
 })
 fiveBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(5);
+    changeDisplayNum('5');
 })
 sixBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(6);
+    changeDisplayNum('6');
 })
 sevenBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(7);
+    changeDisplayNum('7');
 })
 eightBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(8);
+    changeDisplayNum('8');
 })
 nineBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(9);
+    changeDisplayNum('9');
 })
 zeroBtn.addEventListener('click', () => 
 {
-    changeDisplayNum(0);
+    changeDisplayNum('0');
 })
 decimalBtn.addEventListener('click', () => 
 {
-    display.textContent = '.';
+    changeDisplayNum('.');
 })
 plusminusBtn.addEventListener('click', () => 
 {
@@ -121,54 +124,55 @@ addBtn.addEventListener('click', () =>
 })
 equalBtn.addEventListener('click', () => 
 {
-    // console.log(firstValue);
-    // console.log(secondValue);
-    // console.log(displayValue);
-
-    displayValue = operate(operator, parseInt(firstValue), parseInt(secondValue));
-    firstValue = displayValue;
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(displayValue);
+    
+    if (!firstValue && !secondValue)
+    {
+        return;
+    }
+    else if (!secondValue)
+    {
+        return firstValue;
+    }
+    else 
+    {
+    displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue));
+    firstValue = displayValue.toString();
     secondValue = '';
     operator = '';
     display.textContent = displayValue;
+    }
 })
 
-function changeDisplayNum(num)
+function changeDisplayNum(num) //Displays number to display window
 {
     if (!operator) 
     {
-        firstValue += `${num}`;
+        firstValue += num;
         displayValue = firstValue;
     } else if (operator)
     {
-        secondValue += `${num}`;
+        secondValue += num;
         displayValue = secondValue;
     } 
-    // if (!firstValue)
-    // {
-    //     firstValue = num;
-    //     displayValue = firstValue;
-    // } else if (firstValue && !secondValue)
-    // {
-    //     secondValue = num;
-    //     displayValue = secondValue;
-    // } else if (firstValue && secondValue)
-    // {
-    //     secondValue = num;
-    //     displayValue = secondValue;
-    // }
     display.textContent = displayValue;
 }
 
 
-function changeDisplayOperator(op) 
+function changeDisplayOperator(op) //Changes operator based on user input
 {
     if (!operator)
     {
         operator = op;
-        //display.textContent = displayValue;
     } else if (operator)
     {
-        displayValue = operate(operator, parseInt(firstValue), parseInt(secondValue));
+        if (firstValue.includes('.')) { firstValue = parseFloat(firstValue) }
+        else if (secondValue.includes('.')) { secondValue = parseFloat(secondValue) }
+        else { firstValue = parseInt(firstValue); secondValue = parseInt(secondValue); }
+
+        displayValue = operate(operator, firstValue, secondValue);
         firstValue = displayValue.toString();
         secondValue = '';
         operator = op;
@@ -177,42 +181,17 @@ function changeDisplayOperator(op)
     
 }
 
+//Basic math functions
+function add(a, b) { return a+b; }
+function subtract(a, b) { return a-b; }
+function multiply(a, b) { return a*b; }
+function divide(a, b) { return a/b; }
+function modulo(a, b) { return a%b; }
 
-function add(a, b) 
-{
-    return a+b;
-}
-
-function subtract(a, b)
-{
-    return a-b;
-}
-
-function multiply(a, b)
-{
-    return a*b;
-}
-
-function divide(a, b)
-{
-    return a/b;
-}
-
-function modulo(a, b)
-{
-    return a%b;
-}
-
-function operate(operator, a, b)
+function operate(operator, a, b) //Calculates based on operator and operands
 {
     switch(operator)
     {
-        // case '-': return a-b; break;
-        // case '+': return a+b; break;
-        // case '*': return a*b; break;
-        // case '%': return a%b; break;
-        // case '/': return a/b;
-
         case '-': return subtract(a,b); break;
         case '+': return add(a, b); break;
         case '*': return multiply(a, b); break;
@@ -220,8 +199,7 @@ function operate(operator, a, b)
         case '/': return divide(a, b);
     }
 }
-// console.log(add(2.64,2.12))
-// console.log(subtract(2,2))
-// console.log(multiply(2,2))
-// console.log(divide(2,2))
-// console.log(operate('+', 2, 6));
+
+let example = 2
+let example2 = 2.3
+console.log(example + example2);
