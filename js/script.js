@@ -92,11 +92,11 @@ plusminusBtn.addEventListener('click', () =>
     // console.log(displayValue);
     if (displayValue === firstValue) 
     {
-        displayValue = displayValue*(-1);
+        displayValue = displayValue*(-1.0);
         firstValue = displayValue;
     } else if (displayValue === secondValue) 
     {
-        displayValue = displayValue*(-1);
+        displayValue = displayValue*(-1.0);
         secondValue = displayValue;
     }
     display.textContent = displayValue;
@@ -138,7 +138,12 @@ equalBtn.addEventListener('click', () =>
     }
     else 
     {
-    displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue));
+    displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString();
+    if (displayValue.length > 10)
+    {
+        displayValue = displayValue.substring(-1, 10);
+        displayValue = parseFloat(displayValue);
+    }
     firstValue = displayValue.toString();
     secondValue = '';
     operator = '';
@@ -200,6 +205,6 @@ function operate(operator, a, b) //Calculates based on operator and operands
     }
 }
 
-let example = 2
-let example2 = 2.3
-console.log(example + example2);
+let example = '1234567876543';
+console.log(example);
+console.log(example.substring(-1, 11));
