@@ -1,4 +1,4 @@
-//Vairables and constants
+//Variables and constants
 let buttons = Array.from(document.querySelectorAll('button'));
 let firstValue = ''; //Placeholder for first input value
 let secondValue = ''; //Placeholder for second input value
@@ -24,8 +24,7 @@ const addBtn = buttons[15];
 const zeroBtn = buttons[16];
 const decimalBtn = buttons[17];
 const equalBtn = buttons[18];
-display.textContent = 0;
-
+display.textContent = '0';
 
 //Calculator buttons
 clearBtn.addEventListener('click', () => 
@@ -33,22 +32,16 @@ clearBtn.addEventListener('click', () =>
     firstValue = '';
     secondValue = '';
     operator = '';
-    displayValue = 0
+    displayValue = '0'
     display.textContent = displayValue;
 })
 oneBtn.addEventListener('click', () => 
 {
     changeDisplayNum('1');
-    console.log(firstValue);
-    console.log(secondValue);
-    console.log(displayValue);
 })
 twoBtn.addEventListener('click', () => 
 {
     changeDisplayNum('2');
-    console.log(firstValue);
-    console.log(secondValue);
-    console.log(displayValue);
 })
 threeBtn.addEventListener('click', () => 
 {
@@ -101,7 +94,6 @@ plusminusBtn.addEventListener('click', () =>
         secondValue = displayValue;
     }
     display.textContent = displayValue;
-    
 })
 moduloBtn.addEventListener('click', () => 
 {
@@ -188,9 +180,7 @@ function changeDisplayNum(num) //Displays number to display window
         }
     } 
     display.textContent = displayValue;
-    
 }
-
 
 function changeDisplayOperator(op) //Changes operator based on user input
 {
@@ -213,7 +203,6 @@ function changeDisplayOperator(op) //Changes operator based on user input
         operator = op;
         display.textContent = displayValue;
     }
-    
 }
 
 //Basic math functions
@@ -240,6 +229,3 @@ function operate(operator, a, b) //Calculates based on operator and operands
         case '/': return divide(a, b);
     }
 }
-
-let example = 23;
-console.log(example.length);
