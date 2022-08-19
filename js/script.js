@@ -1,28 +1,29 @@
 //Variables and constants
 let buttons = Array.from(document.querySelectorAll('button'));
+console.log(buttons);
 let firstValue = ''; //Placeholder for first input value
 let secondValue = ''; //Placeholder for second input value
 let operator = ''; //Placeholder for operator
 let displayValue = 0; //The actual value currently held in the display window
 const display = document.querySelector('.display');
-const clearBtn = buttons[0];
-const plusminusBtn = buttons[1];
-const moduloBtn = buttons[2];
-const divideBtn = buttons[3];
-const sevenBtn = buttons[4];
-const eightBtn = buttons[5];
-const nineBtn = buttons[6];
-const multiplyBtn = buttons[7];
-const fourBtn = buttons[8];
-const fiveBtn = buttons[9];
-const sixBtn = buttons[10];
-const minusBtn = buttons[11];
-const oneBtn = buttons[12];
-const twoBtn = buttons[13];
-const threeBtn = buttons[14];
-const addBtn = buttons[15];
-const zeroBtn = buttons[16];
-const decimalBtn = buttons[17];
+const clearBtn = buttons[3];
+const plusminusBtn = buttons[17];
+//const moduloBtn = buttons[2];
+const divideBtn = buttons[9];
+const sevenBtn = buttons[0];
+const eightBtn = buttons[1];
+const nineBtn = buttons[2];
+const multiplyBtn = buttons[8];
+const fourBtn = buttons[5];
+const fiveBtn = buttons[6];
+const sixBtn = buttons[7];
+const minusBtn = buttons[14];
+const oneBtn = buttons[10];
+const twoBtn = buttons[11];
+const threeBtn = buttons[12];
+const addBtn = buttons[13];
+const zeroBtn = buttons[15];
+const decimalBtn = buttons[16];
 const equalBtn = buttons[18];
 display.textContent = '0';
 
@@ -95,10 +96,10 @@ plusminusBtn.addEventListener('click', () =>
     }
     display.textContent = displayValue;
 })
-moduloBtn.addEventListener('click', () => 
-{
-    changeDisplayOperator('%');
-})
+// moduloBtn.addEventListener('click', () => 
+// {
+//     changeDisplayOperator('%');
+// })
 divideBtn.addEventListener('click', () => 
 {
     changeDisplayOperator('/');
@@ -216,7 +217,7 @@ function divide(a, b) {
     }
     return a/b; 
 }
-function modulo(a, b) { return a%b; }
+//function modulo(a, b) { return a%b; }
 
 function operate(operator, a, b) //Calculates based on operator and operands
 {
@@ -225,7 +226,7 @@ function operate(operator, a, b) //Calculates based on operator and operands
         case '-': return subtract(a,b); break;
         case '+': return add(a, b); break;
         case '*': return multiply(a, b); break;
-        case '%': return modulo(a, b); break;
+        //case '%': return modulo(a, b); break;
         case '/': return divide(a, b);
     }
 }
