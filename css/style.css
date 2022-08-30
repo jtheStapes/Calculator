@@ -24,7 +24,7 @@ body {
 
 .display {
     background-color: aliceblue;
-    font-size: 75px;
+    font-size: 65px;
     border: 5px solid gray;
     display: flex;
     justify-content: flex-end;
@@ -53,7 +53,7 @@ button {
     display: flex;
     width: 75px;
     padding: 15px;
-    font-size: 32px;
+    font-size: 30px;
     justify-content: center;
     align-items: center;
 }
@@ -62,14 +62,23 @@ button:hover {
     background-color: rgb(192, 192, 192);
 }
 
+button:active {
+    background-color: white;
+    outline: none;
+}
+
 .equal {
     width: 150px;
-    
     background-color: rgb(212, 212, 1);
 }
 
 .equal:hover {
     background-color: rgb(255, 255, 103);
+}
+
+.equal:active {
+    background-color: rgb(212, 212, 1);
+    outline: none;
 }
 
 .delete, .clear
@@ -80,6 +89,10 @@ button:hover {
 .delete:hover, .clear:hover
 {
     background-color: rgb(214, 0, 0);
+}
+
+.delete:active, .clear:active {
+    background-color: lightcoral;
 }
 
 .multiply,
