@@ -1,6 +1,5 @@
 //Variables and constants
 let buttons = Array.from(document.querySelectorAll('button'));
-console.log(buttons);
 let firstValue = ''; //Placeholder for first input value
 let secondValue = ''; //Placeholder for second input value
 let operator = ''; //Placeholder for operator
@@ -9,7 +8,6 @@ const display = document.querySelector('.display');
 const clearBtn = buttons[3];
 const delBtn = buttons[4];
 const plusminusBtn = buttons[17];
-//const moduloBtn = buttons[2];
 const divideBtn = buttons[9];
 const sevenBtn = buttons[0];
 const eightBtn = buttons[1];
@@ -43,36 +41,21 @@ delBtn.addEventListener('click', () =>
     {
         firstValue = firstValue.slice(0, firstValue.length - 1);
         displayValue = firstValue;
-        console.log(displayValue);
         if (!displayValue)
         {
             displayValue = '0';
         }
         display.textContent = displayValue;
-        //deleteValue(firstValue);
     } else if (secondValue)
     {
         secondValue = secondValue.slice(0, secondValue.length - 1);
         displayValue = secondValue;
-        console.log(displayValue);
         if (!displayValue)
         {
             displayValue = '0';
         }
         display.textContent = displayValue;
     }
-    // if (displayValue.length >= 1)
-    // {
-    //     displayValue = displayValue.split('');
-    //     displayValue.pop();
-    //     displayValue = displayValue.join('');
-    //     if (displayValue.length === 0)
-    //     {
-    //         displayValue = '0';
-    //     }
-    //     display.textContent = displayValue;
-    // }
-    
 })
 oneBtn.addEventListener('click', () => 
 {
@@ -120,9 +103,6 @@ decimalBtn.addEventListener('click', () =>
 })
 plusminusBtn.addEventListener('click', () => 
 {
-    // console.log(firstValue);
-    // console.log(secondValue);
-    // console.log(displayValue);
     if (displayValue === firstValue) 
     {
         displayValue = displayValue*(-1.0);
@@ -134,10 +114,7 @@ plusminusBtn.addEventListener('click', () =>
     }
     display.textContent = displayValue;
 })
-// moduloBtn.addEventListener('click', () => 
-// {
-//     changeDisplayOperator('%');
-// })
+
 divideBtn.addEventListener('click', () => 
 {
     changeDisplayOperator('/');
@@ -156,10 +133,6 @@ addBtn.addEventListener('click', () =>
 })
 equalBtn.addEventListener('click', () => 
 {
-    console.log(firstValue);
-    console.log(secondValue);
-    console.log(displayValue);
-    
     if (!firstValue && !secondValue)
     {
         return;
@@ -174,32 +147,36 @@ equalBtn.addEventListener('click', () =>
         //The if...else statement below allows for large operands and converts them to exponential form. 
         if (displayValue.length > 10)
         {   
-            if (parseFloat(displayValue) > 1) 
-            {
-                displayValue = (parseFloat(displayValue).toExponential()).toString(); //Converts displayValue to exponential form
-                let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
-                displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
-                firstValue = tempDisplay;
-                secondValue = '';
-                operator = '';
-                display.textContent = displayValue;
-            } else {
-                displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
-                firstValue = displayValue;
-                secondValue = '';
-                operator = '';
-                display.textContent = displayValue;
-            }
+            displayValue = '9999999999';
+            let displayValueNum = 9999999999
+            firstValue = displayValueNum;
+            secondValue = '';
+            operator = '';
+            display.textContent = displayValue;
+            // if (parseFloat(displayValue) > 1) 
+            // {
+            //     displayValue = (parseFloat(displayValue).toExponential()).toString(); //Converts displayValue to exponential form
+            //     let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
+            //     displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+            //     firstValue = tempDisplay;
+            //     secondValue = '';
+            //     operator = '';
+            //     display.textContent = displayValue;
+            // } else {
+            //     displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+            //     firstValue = displayValue;
+            //     secondValue = '';
+            //     operator = '';
+            //     display.textContent = displayValue;
+            // }
         } else {
             firstValue = displayValue;
             secondValue = '';
             operator = '';
             display.textContent = displayValue;
         }
-        }
-        // console.log(firstValue);
-        // console.log(secondValue);
-        // console.log(displayValue);
+    }
+    console.log(displayValue);
 })
 
 function changeDisplayNum(num) //Displays number to display window
@@ -232,39 +209,19 @@ function changeDisplayNum(num) //Displays number to display window
 
 function changeDisplayOperator(op) //Changes operator based on user input
 {
-    if (!operator) //Sets the initial operator
-    {
-        operator = op;
-    } else if (operator && !secondValue) //Can change operator
+    if (!operator || (operator && !secondValue)) //Sets the initial operator
     {
         operator = op;
     } else if (operator)
     {
         //Convert first and second values from strings to numbers
-        if (firstValue.includes('.')) { firstValue = parseFloat(firstValue) }
-        else if (secondValue.includes('.')) { secondValue = parseFloat(secondValue) }
-        else { firstValue = parseInt(firstValue); secondValue = parseInt(secondValue); }
+        firstValue = parseFloat(firstValue);
+        secondValue = parseFloat(secondValue);
 
         displayValue = operate(operator, firstValue, secondValue);
         firstValue = displayValue.toString();
         secondValue = '';
         operator = op;
-        display.textContent = displayValue;
-    }
-}
-
-function deleteValue (value) {
-    if (value.length >= 1)
-    {
-        value = value.split('');
-        value.pop();
-        value = value.join('');
-        displayValue = value;
-        if (value.length === 0)
-        {
-            value = '0';
-            displayValue = value;
-        }
         display.textContent = displayValue;
     }
 }
@@ -280,7 +237,6 @@ function divide(a, b) {
     }
     return a/b; 
 }
-//function modulo(a, b) { return a%b; }
 
 function operate(operator, a, b) //Calculates based on operator and operands
 {
@@ -289,7 +245,6 @@ function operate(operator, a, b) //Calculates based on operator and operands
         case '-': return subtract(a,b); break;
         case '+': return add(a, b); break;
         case '*': return multiply(a, b); break;
-        //case '%': return modulo(a, b); break;
         case '/': return divide(a, b);
     }
 }
