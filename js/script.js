@@ -41,10 +41,25 @@ delBtn.addEventListener('click', () =>
 {
     if (!secondValue)
     {
-        deleteValue(firstValue);
+        firstValue = firstValue.slice(0, firstValue.length - 1);
+        displayValue = firstValue;
+        console.log(displayValue);
+        if (!displayValue)
+        {
+            displayValue = '0';
+        }
+        display.textContent = displayValue;
+        //deleteValue(firstValue);
     } else if (secondValue)
     {
-        deleteValue(secondValue);
+        secondValue = secondValue.slice(0, secondValue.length - 1);
+        displayValue = secondValue;
+        console.log(displayValue);
+        if (!displayValue)
+        {
+            displayValue = '0';
+        }
+        display.textContent = displayValue;
     }
     // if (displayValue.length >= 1)
     // {
@@ -155,35 +170,36 @@ equalBtn.addEventListener('click', () =>
     }
     else 
     {
-    displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString(); //Performs the operation input into the calculator
-    //The if...else statement below allows for large operands and converts them to exponential form. 
-    if (displayValue.length > 10)
-    {   if (parseFloat(displayValue) > 1) 
-        {
-            displayValue = (parseFloat(displayValue).toExponential()).toString(); //Converts displayValue to exponential form
-            let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
-            displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
-            firstValue = tempDisplay;
-            secondValue = '';
-            operator = '';
-            display.textContent = displayValue;
+        displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString(); //Performs the operation input from calculator
+        //The if...else statement below allows for large operands and converts them to exponential form. 
+        if (displayValue.length > 10)
+        {   
+            if (parseFloat(displayValue) > 1) 
+            {
+                displayValue = (parseFloat(displayValue).toExponential()).toString(); //Converts displayValue to exponential form
+                let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
+                displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+                firstValue = tempDisplay;
+                secondValue = '';
+                operator = '';
+                display.textContent = displayValue;
+            } else {
+                displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+                firstValue = displayValue;
+                secondValue = '';
+                operator = '';
+                display.textContent = displayValue;
+            }
         } else {
-            displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
             firstValue = displayValue;
             secondValue = '';
             operator = '';
             display.textContent = displayValue;
         }
-    } else {
-        firstValue = displayValue;
-        secondValue = '';
-        operator = '';
-        display.textContent = displayValue;
-    }
-    }
-    // console.log(firstValue);
-    // console.log(secondValue);
-    // console.log(displayValue);
+        }
+        // console.log(firstValue);
+        // console.log(secondValue);
+        // console.log(displayValue);
 })
 
 function changeDisplayNum(num) //Displays number to display window
