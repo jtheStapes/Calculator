@@ -147,28 +147,22 @@ equalBtn.addEventListener('click', () =>
         //The if...else statement below allows for large operands and converts them to exponential form. 
         if (displayValue.length > 10)
         {   
-            displayValue = '9999999999';
-            let displayValueNum = 9999999999
-            firstValue = displayValueNum;
-            secondValue = '';
-            operator = '';
-            display.textContent = displayValue;
-            // if (parseFloat(displayValue) > 1) 
-            // {
-            //     displayValue = (parseFloat(displayValue).toExponential()).toString(); //Converts displayValue to exponential form
-            //     let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
-            //     displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
-            //     firstValue = tempDisplay;
-            //     secondValue = '';
-            //     operator = '';
-            //     display.textContent = displayValue;
-            // } else {
-            //     displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
-            //     firstValue = displayValue;
-            //     secondValue = '';
-            //     operator = '';
-            //     display.textContent = displayValue;
-            // }
+            if (parseFloat(displayValue) > 1) 
+            {
+                displayValue = (parseFloat(displayValue).toExponential(4)).toString(); //Converts displayValue to exponential form
+                let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
+                //displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+                firstValue = tempDisplay;
+                secondValue = '';
+                operator = '';
+                display.textContent = displayValue;
+            } else {
+                displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+                firstValue = displayValue;
+                secondValue = '';
+                operator = '';
+                display.textContent = displayValue;
+            }
         } else {
             firstValue = displayValue;
             secondValue = '';
@@ -176,7 +170,6 @@ equalBtn.addEventListener('click', () =>
             display.textContent = displayValue;
         }
     }
-    console.log(displayValue);
 })
 
 function changeDisplayNum(num) //Displays number to display window
