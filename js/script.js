@@ -151,7 +151,6 @@ equalBtn.addEventListener('click', () =>
             {
                 displayValue = (parseFloat(displayValue).toExponential(4)).toString(); //Converts displayValue to exponential form
                 let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
-                //displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
                 firstValue = tempDisplay;
                 secondValue = '';
                 operator = '';
@@ -207,16 +206,33 @@ function changeDisplayOperator(op) //Changes operator based on user input
         operator = op;
     } else if (operator)
     {
-        //Convert first and second values from strings to numbers
-        firstValue = parseFloat(firstValue);
-        secondValue = parseFloat(secondValue);
-
-        displayValue = operate(operator, firstValue, secondValue);
-        firstValue = displayValue.toString();
-        secondValue = '';
-        operator = op;
-        display.textContent = displayValue;
+        displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString();
+        if (displayValue.length > 10)
+        {   
+            if (parseFloat(displayValue) > 1) 
+            {
+                displayValue = (parseFloat(displayValue).toExponential(4)).toString(); //Converts displayValue to exponential form
+                let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
+                firstValue = tempDisplay;
+                secondValue = '';
+                operator = op;
+                display.textContent = displayValue;
+            } else {
+                displayValue = (parseFloat(displayValue).toExponential(4)).toString(); //Converts displayValue to exponential form
+                //displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+                firstValue = displayValue;
+                secondValue = '';
+                operator = op;
+                display.textContent = displayValue;
+            }
+        } else {
+            firstValue = displayValue;
+            secondValue = '';
+            operator = op;
+            display.textContent = displayValue;
+        }
     }
+       
 }
 
 //Basic math functions
