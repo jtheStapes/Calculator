@@ -37,6 +37,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 8px;
+    margin: 10px;
 }
 
 .row-one,
@@ -46,10 +48,12 @@ body {
 .row-five {
     display: flex;
     flex: 1;
+    gap: 4px;
 }
 
 button {
     border: 1px solid black;
+    border-radius: 75px;
     display: flex;
     width: 75px;
     padding: 15px;
