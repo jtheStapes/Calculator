@@ -146,18 +146,18 @@ equalBtn.addEventListener('click', () =>
     {
         displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString(); //Performs the operation input from calculator
         //The if...else statement below allows for large operands and converts them to exponential form. 
-        if (displayValue.length > 10)
+        if (displayValue.length > 11)
         {   
             if (parseFloat(displayValue) > 1) 
             {
-                displayValue = (parseFloat(displayValue).toExponential(4)).toString(); //Converts displayValue to exponential form
+                displayValue = (parseFloat(displayValue).toExponential(5)).toString(); //Converts displayValue to exponential form
                 let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
                 firstValue = tempDisplay;
                 secondValue = '';
                 operator = '';
                 display.textContent = displayValue;
             } else {
-                displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
+                displayValue = (parseFloat(displayValue).toExponential(5)).toString(); //Converts displayValue to exponential form
                 firstValue = displayValue;
                 secondValue = '';
                 operator = '';
@@ -176,7 +176,7 @@ function changeDisplayNum(num) //Displays number to display window
 {
     if (!operator) 
     {
-        if (firstValue.length < 10)
+        if (firstValue.length < 11)
         {
             if (num === '.' && firstValue.includes(num)) //Can't have two decimals in one number
             {
@@ -187,7 +187,7 @@ function changeDisplayNum(num) //Displays number to display window
         }
     } else if (operator)
     {
-        if (secondValue.length < 10) 
+        if (secondValue.length < 11) 
         {
             if (num === '.' && secondValue.includes(num)) //Can't have two decimals in one number
             {
@@ -208,18 +208,18 @@ function changeDisplayOperator(op) //Changes operator based on user input
     } else if (operator)
     {
         displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString();
-        if (displayValue.length > 10)
+        if (displayValue.length > 11)
         {   
             if (parseFloat(displayValue) > 1) 
             {
-                displayValue = (parseFloat(displayValue).toExponential(4)).toString(); //Converts displayValue to exponential form
+                displayValue = (parseFloat(displayValue).toExponential(5)).toString(); //Converts displayValue to exponential form
                 let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
                 firstValue = tempDisplay;
                 secondValue = '';
                 operator = op;
                 display.textContent = displayValue;
             } else {
-                displayValue = (parseFloat(displayValue).toExponential(4)).toString(); //Converts displayValue to exponential form
+                displayValue = (parseFloat(displayValue).toExponential(5)).toString(); //Converts displayValue to exponential form
                 //displayValue = displayValue.substring(-1, 10); //Shortens the real value to be displayed
                 firstValue = displayValue;
                 secondValue = '';
