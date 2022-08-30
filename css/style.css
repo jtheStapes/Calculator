@@ -52,7 +52,7 @@ body {
 }
 
 button {
-    border: 1px solid black;
+    border: 5px solid rgb(43, 53, 63);
     border-radius: 75px;
     display: flex;
     width: 75px;
