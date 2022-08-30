@@ -57,6 +57,7 @@ delBtn.addEventListener('click', () =>
         display.textContent = displayValue;
     }
 })
+
 oneBtn.addEventListener('click', () => 
 {
     changeDisplayNum('1');
@@ -231,8 +232,7 @@ function changeDisplayOperator(op) //Changes operator based on user input
             operator = op;
             display.textContent = displayValue;
         }
-    }
-       
+    }      
 }
 
 //Basic math functions

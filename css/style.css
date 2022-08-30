@@ -43,19 +43,19 @@ body {
 .row-four,
 .row-five {
     display: flex;
-    width: 100%;
+    flex: 1;
 }
 
 button {
     border: 1px solid black;
     display: flex;
-    width: 25%;
-    padding: 25px;
+    width: 75px;
+    padding: 15px;
     font-size: 32px;
     justify-content: center;
     align-items: center;
 }
 
-.zero {
-    width: 50%;
+.equal {
+    width: 150px;
 }
