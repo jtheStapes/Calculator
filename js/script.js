@@ -54,7 +54,7 @@ document.addEventListener('keydown', (event) => {
             {
                 return firstValue;
             }
-            else 
+            else if (firstValue && secondValue)
             {
                 equal(operator, firstValue, secondValue);
             }
