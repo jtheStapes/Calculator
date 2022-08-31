@@ -127,14 +127,16 @@ plusminusBtn.addEventListener('click', () =>
 {
     if (displayValue === firstValue) 
     {
-        displayValue = displayValue*(-1.0);
+        displayValue = (displayValue*(-1.0)).toString();
         firstValue = displayValue;
     } else if (displayValue === secondValue) 
     {
-        displayValue = displayValue*(-1.0);
+        displayValue = (displayValue*(-1.0)).toString();
         secondValue = displayValue;
     }
     display.textContent = displayValue;
+    console.log(firstValue);
+    console.log(displayValue);
 })
 
 divideBtn.addEventListener('click', () => 
@@ -252,12 +254,14 @@ function changeDisplayNum(num) //Displays number to display window
             {
                 return;
             }
-            if (firstValue.length === 1)
+            if (firstValue.length === 1 && firstValue === '0')
             {
                 firstValue = '';
             }
             firstValue += num;
+            console.log(firstValue);
             displayValue = firstValue;
+            console.log(displayValue);
         }
     } else if (operator)
     {
