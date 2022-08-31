@@ -39,7 +39,6 @@ delBtn.addEventListener('click', () =>
 })
 
 document.addEventListener('keydown', (event) => {
-    console.log(typeof event.key);
     if (!keyCodes.includes(event.key))
     {
         return;
@@ -135,8 +134,6 @@ plusminusBtn.addEventListener('click', () =>
         secondValue = displayValue;
     }
     display.textContent = displayValue;
-    console.log(firstValue);
-    console.log(displayValue);
 })
 
 divideBtn.addEventListener('click', () => 
@@ -242,10 +239,6 @@ function clearAll ()
 
 function changeDisplayNum(num) //Displays number to display window
 {
-    if (num === 'Shift')
-    {
-        return;
-    }
     if (!operator) 
     {
         if (firstValue.length < 11)
@@ -259,9 +252,7 @@ function changeDisplayNum(num) //Displays number to display window
                 firstValue = '';
             }
             firstValue += num;
-            console.log(firstValue);
             displayValue = firstValue;
-            console.log(displayValue);
         }
     } else if (operator)
     {
@@ -280,10 +271,6 @@ function changeDisplayNum(num) //Displays number to display window
 
 function changeDisplayOperator(op) //Changes operator based on user input
 {
-    if (op === 'Shift')
-    {
-        return;
-    }
     if (!operator) //Sets the initial operator
     {
         operator = op;
