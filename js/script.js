@@ -58,6 +58,86 @@ delBtn.addEventListener('click', () =>
     }
 })
 
+// document.addEventListener('input', (event) => {
+//     if (event.target.value === 'Enter')
+//     {
+//         if (!firstValue && !secondValue)
+//         {
+//         return;
+//         }
+//         else if (!secondValue)
+//         {
+//         return firstValue;
+//         }
+//         else 
+//         {
+//             displayValue = operate(operator, parseFloat(firstValue), parseFloat(secondValue)).toString(); //Performs the operation input from calculator
+//             //The if...else statement below allows for large operands and converts them to exponential form. 
+//             if (displayValue.length > 11)
+//             {   
+//                 if (parseFloat(displayValue) > 1) 
+//                 {
+//                     displayValue = (parseFloat(displayValue).toExponential(5)).toString(); //Converts displayValue to exponential form
+//                     let tempDisplay = (parseFloat(displayValue).toExponential()).toString(); //Holds the real value in a second variable to be used for the next operation
+//                     firstValue = tempDisplay;
+//                     secondValue = '';
+//                     operator = '';
+//                     display.textContent = displayValue;
+//                 } else {
+//                     displayValue = (parseFloat(displayValue).toExponential(5)).toString(); //Converts displayValue to exponential form
+//                     firstValue = displayValue;
+//                     secondValue = '';
+//                     operator = '';
+//                     display.textContent = displayValue;
+//                 }
+//             } else {
+//                 firstValue = displayValue;
+//                 secondValue = '';
+//                 operator = '';
+//                 display.textContent = displayValue;
+//             }
+//         }
+//     } else if (event.target.value === '+' ||
+//             event.target.value === '-' ||
+//             event.target.value === '*' ||
+//             event.target.value === '/')
+//     {
+//         changeDisplayOperator(`${event.target.value}`);
+//     } else if (event.target.value === 'Backspace')
+//     {
+//         if (!secondValue)
+//     {
+//         firstValue = firstValue.slice(0, firstValue.length - 1);
+//         displayValue = firstValue;
+//         if (!displayValue)
+//         {
+//             displayValue = '0';
+//         }
+//         display.textContent = displayValue;
+//     } else if (secondValue)
+//     {
+//         secondValue = secondValue.slice(0, secondValue.length - 1);
+//         displayValue = secondValue;
+//         if (!displayValue)
+//         {
+//             displayValue = '0';
+//         }
+//         display.textContent = displayValue;
+//     }
+//     } else if (event.target.value === 'Esc')
+//     {
+//         firstValue = '';
+//         secondValue = '';
+//         operator = '';
+//         displayValue = '0'
+//         display.textContent = displayValue;
+//     } 
+//     else {
+//         changeDisplayNum(`${event.target.value}`);
+//     }
+//     console.log(event.target.value);
+// });
+
 oneBtn.addEventListener('click', () => 
 {
     changeDisplayNum('1');
