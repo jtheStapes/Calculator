@@ -1,9 +1,9 @@
 //Variables and constants
 let buttons = Array.from(document.querySelectorAll('button'));
-let firstValue = ''; //Placeholder for first input value
+let firstValue = '0'; //Placeholder for first input value
 let secondValue = ''; //Placeholder for second input value
 let operator = ''; //Placeholder for operator
-let displayValue = '0'; //The actual value currently held in the display window
+let displayValue = firstValue; //The actual value currently held in the display window
 const display = document.querySelector('.display');
 const clearBtn = buttons[3];
 const delBtn = buttons[4];
@@ -25,6 +25,8 @@ const zeroBtn = buttons[15];
 const decimalBtn = buttons[16];
 const equalBtn = buttons[18];
 display.textContent = '0';
+let keyCodes = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '*'
+, '-', '+', '=', '/', 'Enter', 'Backspace', '.', 'Escape']  //Only keycodes allowed for keyboard input
 
 //Calculator buttons
 clearBtn.addEventListener('click', () => 
@@ -37,39 +39,43 @@ delBtn.addEventListener('click', () =>
 })
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter')
-    {
-        if (!firstValue && !secondValue)
-        {
-            return;
-        }
-        else if (!secondValue)
-        {
-            return firstValue;
-        }
-        else 
-        {
-            equal(operator, firstValue, secondValue);
-        }
-    } else if (event.key === '+' ||
-            event.key === '-' ||
-            event.key === '*' ||
-            event.key === '/')
-    {
-        changeDisplayOperator(`${event.key}`);
-    } else if (event.key === 'Backspace')
-    {
-        deleteValue(firstValue, secondValue);
-    
-    } else if (event.key === 'Escape')
-    {
-        clearAll();
-    } else if (event.code.includes('Key'))
+    console.log(typeof event.key);
+    if (!keyCodes.includes(event.key))
     {
         return;
     }
     else {
-        changeDisplayNum(`${event.key}`);
+        if (event.key === 'Enter' || event.key === '=')
+        {
+            if (!firstValue && !secondValue)
+            {
+                return;
+            }
+            else if (!secondValue)
+            {
+                return firstValue;
+            }
+            else 
+            {
+                equal(operator, firstValue, secondValue);
+            }
+        } else if (event.key === '+' ||
+                event.key === '-' ||
+                event.key === '*' ||
+                event.key === '/')
+        {
+            changeDisplayOperator(`${event.key}`);
+        } else if (event.key === 'Backspace')
+        {
+            deleteValue(firstValue, secondValue);
+        
+        } else if (event.key === 'Escape')
+        {
+            clearAll();
+        } 
+        else {
+            changeDisplayNum(`${event.key}`);
+        }
     }
 });
 
@@ -225,10 +231,10 @@ function deleteValue (valOne, valTwo)
 
 function clearAll ()
 {
-    firstValue = '';
+    firstValue = '0';
     secondValue = '';
     operator = '';
-    displayValue = '0'
+    displayValue = firstValue;
     display.textContent = displayValue;
 }
 
@@ -245,6 +251,10 @@ function changeDisplayNum(num) //Displays number to display window
             if (num === '.' && firstValue.includes(num)) //Can't have two decimals in one number
             {
                 return;
+            }
+            if (firstValue.length === 1)
+            {
+                firstValue = '';
             }
             firstValue += num;
             displayValue = firstValue;
@@ -270,7 +280,7 @@ function changeDisplayOperator(op) //Changes operator based on user input
     {
         return;
     }
-    if (!operator || (operator && !secondValue)) //Sets the initial operator
+    if (!operator) //Sets the initial operator
     {
         operator = op;
     } else if (operator)
