@@ -64,7 +64,10 @@ document.addEventListener('keydown', (event) => {
     } else if (event.key === 'Escape')
     {
         clearAll();
-    } 
+    } else if (event.code.includes('Key'))
+    {
+        return;
+    }
     else {
         changeDisplayNum(`${event.key}`);
     }
